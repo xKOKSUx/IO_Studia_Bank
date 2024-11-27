@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Bank.src.Entities;
 
 namespace Bank.src
@@ -7,6 +7,11 @@ namespace Bank.src
     {
         static void Main(string[] args)
         {
+            var fileManagement = new FileManagement();
+            fileManagement.CreateFile();
+
+            Display.Logo();
+        Display.MainMenu();
             var manager = new BankAccountManager();
 
             try
