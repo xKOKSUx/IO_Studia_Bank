@@ -49,8 +49,9 @@ public class FileManagement
 
     public T? ReadFromFile<T>(string path)
     {
-        if (!File.Exists(path))
-            return default;
+        //if (!File.Exists(path))
+        //    return default;
+        // tylko jedna metoda ma sprawdzać czy plik istnieje
 
         string jsonData = File.ReadAllText(path);
         return JsonSerializer.Deserialize<T>(jsonData);
