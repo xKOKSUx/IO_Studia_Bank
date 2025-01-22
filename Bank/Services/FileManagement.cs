@@ -63,4 +63,13 @@ public class FileManagement
         if (File.Exists(TransactionsPath)) File.Delete(TransactionsPath);
         Console.WriteLine("Pliki zostały usunięte.");
     }
+
+    public void ExitProcedure()
+    {
+        Console.WriteLine("Program zostanie zamknięty");
+        Console.WriteLine("Naciśnij dowolny klawisz, aby zakończyć...");
+        Console.ReadKey();
+
+        Environment.Exit(0);
+    }
 }

@@ -48,5 +48,30 @@ namespace Bank.Services
             Console.WriteLine($"Bilans z {month}/{year} wynosi {total:C}");
             Console.ReadKey();
         }
+
+        public void AddTransaction(decimal amount, string note)
+        {
+            var transactions = _fileManagement.ReadFromFile<List<Transaction>>(FileManagement.ConfigPath) ?? [];
+            transactions.Add(new Transaction
+            {
+                Date = DateTime.Now,
+                Amount = amount,
+                Note = note
+            });
+
+            _fileManagement.SaveToFile(FileManagement.ConfigPath, transactions);
+        }
+
+        public void Transfer()
+        {
+            Console.WriteLine("Transfer");
+        }
+
+        public void Withdraw()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("$$$");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }
