@@ -4,14 +4,13 @@ namespace Bank.Services;
 
 public class FileManagement
 {
-    public const string ConfigPath = "config.json";
-    public const string TransactionsPath = "transactions.json";
+    private static string ConfigPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "config.json");
+    public static string TransactionsPath => Path.Combine(ConfigPath, "transactions.json");
 
     public void CreateFile()
     {
         try
         {
-            // Tworzenie pliku config.json z domyślnymi wartościami
             if (!File.Exists(ConfigPath))
             {
                 var defaultConfig = new { MonthBudget = 0, Payday = 1 };
@@ -24,10 +23,9 @@ public class FileManagement
                 Console.WriteLine("Plik config.json już istnieje.");
             }
 
-            // Tworzenie pustego pliku transactions.json
             if (!File.Exists(TransactionsPath))
             {
-                File.WriteAllText(TransactionsPath, "[]"); // Tworzy pustą listę w formacie JSON
+                File.WriteAllText(TransactionsPath, "[]");
                 Console.WriteLine("Utworzono plik transactions.json.");
             }
             else
@@ -49,10 +47,6 @@ public class FileManagement
 
     public T? ReadFromFile<T>(string path)
     {
-        //if (!File.Exists(path))
-        //    return default;
-        // tylko jedna metoda ma sprawdzać czy plik istnieje
-
         string jsonData = File.ReadAllText(path);
         return JsonSerializer.Deserialize<T>(jsonData);
     }
