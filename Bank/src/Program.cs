@@ -14,6 +14,7 @@ namespace Bank.src
             Display.Logo();
             Display.MainMenu();
             var manager = new BankAccountManager();
+            var transactionManagement = new TransactionManagement();
 
             try
             {
@@ -48,6 +49,30 @@ namespace Bank.src
 
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
+
+            while (true)
+            {
+                int choice = int.Parse(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        transactionManagement.Transfer();
+                        break;
+                    case 2:
+                        transactionManagement.DisplayExpensesHistory();
+                        break;
+                    case 3:
+                        transactionManagement.Withdraw();
+                        break;
+                    case 4:
+                        fileManagement.ExitProcedure();
+                        break;
+                    default:
+                        Console.WriteLine("Niepoprawny wybór.");
+                        break;
+                }
+            }
         }
     }
 }
